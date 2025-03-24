@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Obliczanie BMI</title>
+</head>
+<body>
+    <h1>Obliczanie BMI</h1>
+    <p id="bmiResult"></p>
+
+    <script>
+        function calculateBMI(weight, height) {
+            return weight / Math.pow(height, 2);
+        }
+
+        function displayBMI() {
+            let weight = parseFloat(prompt("Podaj swoją wagę (kg):"));
+            let height = parseFloat(prompt("Podaj swój wzrost (m):"));
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                alert("Niepoprawne wartości! Podaj poprawne liczby.");
+                return;
+            }
+
+            const bmi = calculateBMI(weight, height);
+            let status = "";
+
+            if (bmi < 18.5) status = "Niedowaga";
+            else if (bmi < 24.9) status = "Prawidłowa waga";
+            else if (bmi < 29.9) status = "Nadwaga";
+            else status = "Otyłość";
+
+            document.getElementById("bmiResult").textContent = `Twoje BMI: ${bmi.toFixed(2)} - ${status}`;
+        }
+
+        displayBMI();
+    </script>
+</body>
+</html>
