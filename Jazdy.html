@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Losowanie wieku i uprawnień</title>
+</head>
+<body>
+    <h1>Losowanie wieku i uprawnień</h1>
+    <p id="finalResult"></p>
+
+    <script>
+        function generateRandomAge(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function checkDrivingEligibility(age) {
+            return age >= 18 ? "Możesz prowadzić pojazd." : "Nie możesz jeszcze prowadzić pojazdu.";
+        }
+
+        function displayEligibility() {
+            let min = parseInt(prompt("Podaj minimalny wiek:"));
+            let max = parseInt(prompt("Podaj maksymalny wiek:"));
+
+            if (isNaN(min) || isNaN(max) || min >= max) {
+                alert("Niepoprawne wartości! Wprowadź poprawny zakres.");
+                return;
+            }
+
+            const age = generateRandomAge(min, max);
+            const message = `Wiek: ${age} - ${checkDrivingEligibility(age)}`;
+            document.getElementById("finalResult").textContent = message;
+        }
+
+        displayEligibility();
+    </script>
+</body>
+</html>
